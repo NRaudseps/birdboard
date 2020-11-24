@@ -27,23 +27,34 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'description' => 'required|max:100',
-            'notes' => 'max:255'
-        ]);
-
-        $project = auth()->user()->projects()->create($attributes);
+        $project = auth()->user()->projects()->create($this->requestValidator());
 
         return redirect($project->path());
+    }
+
+    public function edit(Project $project)
+    {
+        return view('projects.edit', compact('project'));
     }
 
     public function update(Project $project)
     {
         $this->authorize('update', $project);
 
-        $project->update(request(['notes']));
+        $project->update($this->requestValidator());
 
         return redirect($project->path());
+    }
+
+    /**
+     * @return array
+     */
+    protected function requestValidator(): array
+    {
+        return request()->validate([
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required|max:100',
+            'notes' => 'nullable'
+        ]);
     }
 }

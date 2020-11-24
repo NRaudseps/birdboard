@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/projects', [ProjectsController::class, 'index']);
     Route::get('/projects/create', [ProjectsController::class, 'create']);
     Route::get('/projects/{project}', [ProjectsController::class, 'show']);
+    Route::get('/projects/{project}/edit', [ProjectsController::class, 'edit']);
     Route::patch('/projects/{project}', [ProjectsController::class, 'update']);
     Route::post('/projects', [ProjectsController::class, 'store']);
 
@@ -35,8 +36,3 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes();
-
-Auth::routes();
-
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

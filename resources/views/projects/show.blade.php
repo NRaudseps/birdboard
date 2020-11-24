@@ -8,11 +8,11 @@
             </p>
 
             <a
-                href="/projects/create"
+                href="{{ $project->path() . '/edit' }}"
                 class="text-white no-underline shadow-md rounded-lg text-sm py-2 px-5"
                 style="background-color: #47cdff;"
             >
-                New Project
+                Edit Project
             </a>
         </div>
     </header>
@@ -76,8 +76,17 @@
                             type="submit"
                             class="text-white no-underline shadow-md rounded-lg text-sm py-2 px-5"
                             style="background-color: #47cdff;"
-                        >Save</button>
+                        >Save
+                        </button>
                     </form>
+
+                    @if ($errors->any())
+                        <div class="field mt-6">
+                            @foreach($errors->all() as $error)
+                                <li class="text-sm text-red-400">{{ $error }}</li>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="lg:w-1/4 px-3 mt-8">
