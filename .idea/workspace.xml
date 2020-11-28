@@ -10,15 +10,30 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0bf51c7c-6851-4bb0-9e48-0715bf865d23" name="Default Changelist" comment="basic backend logic; setup frontend; cleaned tests">
-      <change afterPath="$PROJECT_DIR$/resources/views/projects/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/projects/form.blade.php" afterDir="false" />
+    <list default="true" id="0bf51c7c-6851-4bb0-9e48-0715bf865d23" name="Default Changelist" comment="everything done up to activity field">
+      <change afterPath="$PROJECT_DIR$/app/Models/Activity.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Observers/ProjectObserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Observers/TaskObserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_24_130149_create_activities_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/projects/activity/card.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/projects/activity/completed_task.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/projects/activity/created.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/projects/activity/created_task.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/projects/activity/incompleted_task.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/projects/activity/updated.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/TriggerActivityTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5934414c-d0f6-49c4-b538-4051d30f1d22.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5934414c-d0f6-49c4-b538-4051d30f1d22.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/projects/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectTasksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectTasksController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Task.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Task.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/TaskFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/TaskFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/projects/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/projects/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ManageProjectsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ManageProjectsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ProjectTasksTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ProjectTasksTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/TaskTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/TaskTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +50,12 @@
   <component name="JsbtTreeLayoutManager">
     <layout place="tools.popupnpm">
       <scroll-view-position x="0" y="0" />
+      <selected-paths>
+        <path>
+          <id value="$PROJECT_DIR$/package.json" />
+          <id value="production" />
+        </path>
+      </selected-paths>
     </layout>
   </component>
   <component name="PackageJsonUpdateNotifier">
@@ -164,31 +185,33 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../codelex/11-2020/example-blog" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/projects/activity" />
       <recent name="$PROJECT_DIR$/public/images" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.tests">
-    <configuration name="ManageProjectsTest.a_user_can_update_a_projects_general_notes" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ManageProjectsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ManageProjectsTest.php" method="a_user_can_update_a_projects_general_notes" scope="Method" />
+  <component name="RunManager" selected="PHPUnit.TriggerActivityTest.completing_a_task">
+    <configuration name="ManageProjectsTest.a_user_can_create_a_project" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ManageProjectsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ManageProjectsTest.php" method="a_user_can_create_a_project" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ManageProjectsTest.a_user_can_update_their_project" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ManageProjectsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ManageProjectsTest.php" method="a_user_can_update_their_project" scope="Method" />
+    <configuration name="TriggerActivityTest.completing_a_task" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\TriggerActivityTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TriggerActivityTest.php" method="completing_a_task" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ManageProjectsTest.a_user_can_view_their_project" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ManageProjectsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ManageProjectsTest.php" method="a_user_can_view_their_project" scope="Method" />
+    <configuration name="TriggerActivityTest.creating_a_new_task" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\TriggerActivityTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TriggerActivityTest.php" method="creating_a_new_task" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ManageProjectsTest.an_authenticated_user_cannot_update_the_projects_of_others" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ManageProjectsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ManageProjectsTest.php" method="an_authenticated_user_cannot_update_the_projects_of_others" scope="Method" />
+    <configuration name="TriggerActivityTest.deleting_a_task" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\TriggerActivityTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/TriggerActivityTest.php" method="deleting_a_task" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -201,11 +224,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.TriggerActivityTest.completing_a_task" />
+        <item itemvalue="PHPUnit.TriggerActivityTest.creating_a_new_task" />
         <item itemvalue="PHPUnit.tests" />
-        <item itemvalue="PHPUnit.ManageProjectsTest.a_user_can_update_a_projects_general_notes" />
-        <item itemvalue="PHPUnit.ManageProjectsTest.a_user_can_update_their_project" />
-        <item itemvalue="PHPUnit.ManageProjectsTest.an_authenticated_user_cannot_update_the_projects_of_others" />
-        <item itemvalue="PHPUnit.ManageProjectsTest.a_user_can_view_their_project" />
+        <item itemvalue="PHPUnit.ManageProjectsTest.a_user_can_create_a_project" />
+        <item itemvalue="PHPUnit.TriggerActivityTest.deleting_a_task" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +247,7 @@
       <workItem from="1606208840719" duration="156000" />
       <workItem from="1606209017765" duration="96000" />
       <workItem from="1606209137522" duration="640000" />
-      <workItem from="1606209821577" duration="6819000" />
+      <workItem from="1606209821577" duration="20320000" />
     </task>
     <task id="LOCAL-00001" summary="basic backend logic; setup frontend">
       <created>1606120749203</created>
@@ -247,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606206846780</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="everything done up to activity field">
+      <created>1606221922840</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606221922840</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,7 +302,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="basic backend logic; setup frontend" />
     <MESSAGE value="basic backend logic; setup frontend; cleaned tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic backend logic; setup frontend; cleaned tests" />
+    <MESSAGE value="everything done up to activity field" />
+    <option name="LAST_COMMIT_MESSAGE" value="everything done up to activity field" />
   </component>
   <component name="WindowStateProjectService">
     <state x="642" y="180" width="700" height="759" key="#PHP" timestamp="1605862164763">
@@ -283,10 +314,14 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="591" y="215" width="958" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1605885512234" />
-    <state x="72" y="27" width="1013" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606146568416">
+    <state x="781" y="225" width="419" height="664" key="#com.intellij.ide.util.MemberChooser" timestamp="1606224898998">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="72" y="27" width="1013" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1606146568416" />
+    <state x="781" y="225" width="419" height="664" key="#com.intellij.ide.util.MemberChooser/72.27.1848.1053@72.27.1848.1053" timestamp="1606224898998" />
+    <state x="72" y="27" width="1013" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606231575311">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="72" y="27" width="1013" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1606231575311" />
     <state x="729" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606135100522">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -295,26 +330,26 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="774" y="225" width="443" height="663" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/72.27.1848.1053@72.27.1848.1053" timestamp="1606215907678" />
-    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1606208345732">
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1606290577442">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1606208345732" />
-    <state width="1848" height="295" key="GridCell.Tab.0.bottom" timestamp="1606221892504">
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1606290577442" />
+    <state width="1848" height="385" key="GridCell.Tab.0.bottom" timestamp="1606290579545">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1848" height="295" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1606221892504" />
-    <state width="1848" height="295" key="GridCell.Tab.0.center" timestamp="1606221892502">
+    <state width="1848" height="385" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1606290579545" />
+    <state width="1848" height="385" key="GridCell.Tab.0.center" timestamp="1606290579544">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1848" height="295" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1606221892502" />
-    <state width="1848" height="295" key="GridCell.Tab.0.left" timestamp="1606221892501">
+    <state width="1848" height="385" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1606290579544" />
+    <state width="1848" height="385" key="GridCell.Tab.0.left" timestamp="1606290579543">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1848" height="295" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1606221892501" />
-    <state width="1848" height="295" key="GridCell.Tab.0.right" timestamp="1606221892503">
+    <state width="1848" height="385" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1606290579543" />
+    <state width="1848" height="385" key="GridCell.Tab.0.right" timestamp="1606290579544">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="1848" height="295" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1606221892503" />
+    <state width="1848" height="385" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1606290579544" />
     <state width="1848" height="369" key="GridCell.Tab.1.bottom" timestamp="1605945004307">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -339,33 +374,33 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="802" y="490" width="377" height="133" key="ReplaceDuplicatesPrompt/72.27.1848.1053@72.27.1848.1053" timestamp="1606215914052" />
-    <state x="498" y="259" width="1219" height="821" key="SettingsEditor" timestamp="1606214615791">
+    <state x="498" y="259" width="1219" height="821" key="SettingsEditor" timestamp="1606226737568">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="498" y="259" width="1219" height="821" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1606214615791" />
-    <state x="725" y="284" width="675" height="524" key="StructurePopup" timestamp="1606205703189">
+    <state x="498" y="259" width="1219" height="821" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1606226737568" />
+    <state x="725" y="284" width="690" height="524" key="StructurePopup" timestamp="1606230928154">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="725" y="284" width="675" height="524" key="StructurePopup/72.27.1848.1053@72.27.1848.1053" timestamp="1606205703189" />
-    <state width="563" height="446" key="SwitcherDM" timestamp="1606205132708">
+    <state x="725" y="284" width="690" height="524" key="StructurePopup/72.27.1848.1053@72.27.1848.1053" timestamp="1606230928154" />
+    <state width="563" height="446" key="SwitcherDM" timestamp="1606232418955">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="563" height="446" key="SwitcherDM/72.27.1848.1053@72.27.1848.1053" timestamp="1606205132708" />
+    <state width="563" height="446" key="SwitcherDM/72.27.1848.1053@72.27.1848.1053" timestamp="1606232418955" />
     <state x="687" y="263" width="618" height="580" key="find.popup" timestamp="1606205638182">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="687" y="263" width="618" height="580" key="find.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1606205638182" />
-    <state x="870" y="409" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1605888632294">
+    <state x="870" y="409" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1606226166976">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="870" y="409" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup/72.27.1848.1053@72.27.1848.1053" timestamp="1605888632294" />
+    <state x="870" y="409" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup/72.27.1848.1053@72.27.1848.1053" timestamp="1606226166976" />
     <state x="660" y="252" key="run.anything.popup" timestamp="1606205928356">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="660" y="252" key="run.anything.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1606205928356" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1606221195952">
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1606238469184">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1606221195952" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1606238469184" />
   </component>
 </project>

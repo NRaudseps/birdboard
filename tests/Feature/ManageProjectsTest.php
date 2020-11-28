@@ -29,6 +29,7 @@ class ManageProjectsTest extends TestCase
 
         $project = Project::where($attributes)->first();
 
+
         $response->assertRedirect($project->path());
 
         $this->get($project->path())

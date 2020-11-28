@@ -6,6 +6,7 @@ use App\Http\Controllers\ProjectTasksController;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
