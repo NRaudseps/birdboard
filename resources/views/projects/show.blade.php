@@ -2,18 +2,37 @@
 
 @section('content')
     <header class="flex items-center mb-3 py-4">
-        <div class="flex justify-between items-center w-full">
+        <div class="flex justify-between items-end w-full">
             <p class="text-base text-gray-400">
-                <a href="/projects">My Projects</a> / {{ $project->title }}
+                <a
+                    href="/projects"
+                    class="text-gray-400 font-normal no-underline hover:underline"
+                >My Projects</a> / {{ $project->title }}
             </p>
 
-            <a
-                href="{{ $project->path() . '/edit' }}"
-                class="text-white no-underline shadow-md rounded-lg text-sm py-2 px-5"
-                style="background-color: #47cdff;"
-            >
-                Edit Project
-            </a>
+            <div class="flex items-center">
+                @foreach($project->members as $member)
+                    <img
+                        src="{{ gravatar_url($member->email) }}"
+                        alt="{{ $member->name }}'s avatar"
+                        class="rounded-full w-8 mr-2"
+                    >
+                @endforeach
+
+                <img
+                    src="{{ gravatar_url($project->owner->email) }}"
+                    alt="{{ $project->owner->name }}'s avatar"
+                    class="rounded-full w-8 mr-2"
+                >
+
+                <a
+                    href="{{ $project->path() . '/edit' }}"
+                    class="text-white no-underline shadow-md rounded-lg text-sm py-2 px-5 ml-4"
+                    style="background-color: #47cdff;"
+                >
+                    Edit Project
+                </a>
+            </div>
         </div>
     </header>
 
@@ -80,19 +99,16 @@
                         </button>
                     </form>
 
-                    @if ($errors->any())
-                        <div class="field mt-6">
-                            @foreach($errors->all() as $error)
-                                <li class="text-sm text-red-400">{{ $error }}</li>
-                            @endforeach
-                        </div>
-                    @endif
+                    @include('errors')
                 </div>
             </div>
             <div class="lg:w-1/4 px-3 mt-8">
                 @include('projects.card')
                 @include('projects.activity.card')
-            </div>
+
+                @can ('manage', $project)
+                    @include('projects.invite')
+                @endcan
         </div>
     </main>
 

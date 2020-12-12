@@ -3,3 +3,9 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+.theme-light {
+    --page-background-color: red;
+    --card-background-color: white;
+    --button-background-colot: blue;
+}

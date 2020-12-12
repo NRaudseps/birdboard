@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\RecordsActivity;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, RecordsActivity;
 
     protected $guarded = [];
 
@@ -36,8 +39,18 @@ class Project extends Model
         return $this->hasMany(Activity::class)->latest();
     }
 
-    public function recordActivity($description)
+    public function invite(User $user)
     {
-        $this->activity()->create(compact('description'));
+        return $this->members()->attach($user);
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_members')->withTimestamps();
+    }
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 }

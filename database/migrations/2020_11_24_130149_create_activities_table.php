@@ -19,8 +19,13 @@ class CreateActivitiesTable extends Migration
                 ->references('id')
                 ->on('projects')
                 ->cascadeOnDelete();
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
             $table->nullableMorphs('subject');
             $table->string('description');
+            $table->text('changes')->nullable();
             $table->timestamps();
         });
     }
